@@ -48,7 +48,8 @@ preset_keyboards:
 - 新版本首次运行需要选择“内部存储/rime”目录。选择后应用使用 `EXTERNAL_SYNC`，并导入了原有 Rime 配置。
 - 修改前已备份：`/storage/emulated/0/rime/默认配置调整.trime.yaml.codex-backup-20260923-1`。
 - 备份文件与原配置的 MD5 均为 `4bfd00444dc6b00ecc9c37b808612d00`。
-- 已在 `/storage/emulated/0/rime/默认配置调整.trime.yaml` 中加入 `Control_L` 预设和底行按键；当前修改版 MD5 为 `7538a1458d98a4aa8aa73df72e3d879c`。
+- 已在 `/storage/emulated/0/rime/默认配置调整.trime.yaml` 中加入 `Control_L` 预设和新版中英文切换配置；当前修改版 MD5 为 `b950f53fabe3ce304b6a7054aa0b3cd7`。
+- 中英文切换修复前的配置另备份为 `/storage/emulated/0/rime/默认配置调整.trime.yaml.codex-before-switch-fix-20260923-1`，MD5 为 `7538a1458d98a4aa8aa73df72e3d879c`。
 - 真机部署并重新选择“默认配置调整”主题后，键盘正常显示 `Ctrl`，点击后会高亮锁定；点击 `B` 后可继续操作，之后再次点击 `Ctrl` 可解除锁定。
 - 自定义主题第一次修改时曾因 YAML 底行缩进多一个空格而被应用拒绝；已修正并重新部署，未触及备份文件。
 
@@ -59,4 +60,5 @@ tmux 是否切换窗口，最终还取决于终端或 SSH 客户端是否把 And
 - 真机点击自定义主题的“方案/中文”键后，日志显示处理成 `VoidSymbol`，Rime 状态仍为 `isAsciiMode=false`，因此没有发生切换。
 - 自定义文件第 938 行仍使用旧写法：`Mode_switch: {toggle: ascii_mode, send: Mode_switch, ...}`。
 - 当前版本内置 `trime.yaml` 使用 `send: SWITCH_CHARSET`。切换到内置主题后，真机可以正常在“中文”和“英文”之间切换，证明运行时功能正常。
-- 因此这次失效是旧自定义主题配置与新版内置按键定义不一致造成的，不是 APK 的中英文切换实现整体失效。当前尚未修改该配置；修复时应至少将 `Mode_switch` 的 `send` 改为 `SWITCH_CHARSET`，并复核同组状态键。
+- 因此这次失效是旧自定义主题配置与新版内置按键定义不一致造成的，不是 APK 的中英文切换实现整体失效。已将该配置中所有旧的 `send: Mode_switch` 替换为新版的 `send: SWITCH_CHARSET`，包括 `Mode_switch`、`Zenkaku_Hankaku`、`Henkan`、`Charset_switch`、`Punct_switch` 以及候选/注释/助记开关。
+- 修复后真机点击切换键可得到 `ascii_mode=true`（键面显示“西文”），再次点击可得到 `ascii_mode=false`（恢复“中文”）。
