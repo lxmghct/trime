@@ -112,7 +112,7 @@ class ThemeGoldenTest :
 
                 Then("color schemes and preset keys are decoded") {
                     theme.colorSchemes.size shouldBe 37
-                    theme.presetKeys.size shouldBe 106
+                    theme.presetKeys.size shouldBe 108
                     val brightnessDown = theme.presetKeys.getValue("BRIGHTNESS_DOWN")
                     brightnessDown.label shouldBe "亮度-"
                     brightnessDown.send shouldBe "BRIGHTNESS_DOWN"
@@ -131,7 +131,10 @@ class ThemeGoldenTest :
                     default.height shouldBe 44f
                     default.lock shouldBe true
                     default.asciiMode shouldBe false
-                    default.keys.size shouldBe 47
+                    default.keys.size shouldBe 48
+                    default.keys.any {
+                        it.behaviors[KeyBehavior.CLICK] == KeyActionToken.Plain("Control_L")
+                    } shouldBe true
                     default.keys.first().behaviors[KeyBehavior.CLICK] shouldBe
                         KeyActionToken.Plain("1")
                     default.keys.first().behaviors[KeyBehavior.LONG_CLICK] shouldBe

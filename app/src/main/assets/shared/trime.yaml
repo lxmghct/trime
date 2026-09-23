@@ -876,6 +876,8 @@ preset_keys:
   VOLUME_MUTE: {label: 靜音, send: VOLUME_MUTE}
   # 編輯
   Shift_L: {label: Shift, send: Shift_L, shift_lock: ascii_long}
+  Control_L: {label: Ctrl, send: Control_L, shift_lock: click}
+  Control_R: {label: Ctrl, send: Control_R, shift_lock: click}
   Return: {label: enter_labels, send: Return}
   Return1: {label: Enter, send: Return }
   Return2: {label: 回车, send: Return }
@@ -1022,9 +1024,10 @@ preset_keyboards:
       - {click: '.', long_click: '>'}
       - {click: '/', long_click: '?'}
       - {click: Shift_L}
+      - {click: Control_L}
       - {click: Keyboard_symbols, long_click: Keyboard_number}
       - {click: Mode_switch, long_click: Menu}
-      - {click: space, width: 30}
+      - {click: space, width: 20}
       - {click: "'", long_click: '"'}
       - {click: BackSpace, width: 15}
       - {click: Return, composing: Return1, long_click: CommitComment, width: 15}

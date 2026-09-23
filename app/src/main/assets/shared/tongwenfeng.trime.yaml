@@ -4089,7 +4089,7 @@ preset_keys:
   Keyboard_v2: {label: "✾", functional: false, send: v}
   Keyboard_r2: {label: "❀", functional: false, send: r}
   Keyboard_fc: {label: "'分词", send: apostrophe, functional: false}
-  Control_L: {label: "退格", send: Control_L, functional: false}
+  Control_L: {label: Ctrl, send: Control_L, functional: false, shift_lock: click}
 
   # aoeiu功能键
   Keyboard_a: {label: "A", functional: false, send: asciicircum, key_text_color: bct0}

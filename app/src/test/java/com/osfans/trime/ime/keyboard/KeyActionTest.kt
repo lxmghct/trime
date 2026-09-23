@@ -51,6 +51,14 @@ class KeyActionTest :
                     action.modifierKeyOnMask shouldBe KeyEvent.META_SHIFT_ON
                 }
             }
+            `when`("the preset is a standalone control key") {
+                then("the control key is resolved as a sticky modifier") {
+                    val action = plain("Control_L")
+                    action.code shouldBe KeyEvent.KEYCODE_CTRL_LEFT
+                    action.isShiftLock shouldBe true
+                    action.modifierKeyOnMask shouldBe KeyEvent.META_CTRL_ON
+                }
+            }
             `when`("the preset has no send but a command") {
                 then("the action degrades to a function key") {
                     val action = plain("Return")
