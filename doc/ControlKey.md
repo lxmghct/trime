@@ -53,3 +53,10 @@ preset_keyboards:
 - 自定义主题第一次修改时曾因 YAML 底行缩进多一个空格而被应用拒绝；已修正并重新部署，未触及备份文件。
 
 tmux 是否切换窗口，最终还取决于终端或 SSH 客户端是否把 Android 的 Ctrl 组合事件传递给远端终端；Trime 端的 Ctrl 修饰键和 `Ctrl+B` 输入链路已在真机键盘上验证。
+
+## 中英文切换兼容性复核（2026-09-23）
+
+- 真机点击自定义主题的“方案/中文”键后，日志显示处理成 `VoidSymbol`，Rime 状态仍为 `isAsciiMode=false`，因此没有发生切换。
+- 自定义文件第 938 行仍使用旧写法：`Mode_switch: {toggle: ascii_mode, send: Mode_switch, ...}`。
+- 当前版本内置 `trime.yaml` 使用 `send: SWITCH_CHARSET`。切换到内置主题后，真机可以正常在“中文”和“英文”之间切换，证明运行时功能正常。
+- 因此这次失效是旧自定义主题配置与新版内置按键定义不一致造成的，不是 APK 的中英文切换实现整体失效。当前尚未修改该配置；修复时应至少将 `Mode_switch` 的 `send` 改为 `SWITCH_CHARSET`，并复核同组状态键。
