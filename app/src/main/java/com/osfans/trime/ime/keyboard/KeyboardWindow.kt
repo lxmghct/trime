@@ -86,6 +86,8 @@ class KeyboardWindow(di: DI) :
     private var lastLockKeyboardId = ""
     private var tempAsciiMode: Boolean? = null
     private val cachedKeyboards = mutableMapOf<String, Pair<Keyboard, KeyboardView>>()
+    /** Modifier state is shared while the user moves between cached keyboard layouts. */
+    private var sharedModifier = 0
     private val activeKeyboard: Keyboard? get() = cachedKeyboards[currentKeyboardId]?.first
     private val currentKeyboardView: KeyboardView? get() = cachedKeyboards[currentKeyboardId]?.second
 
@@ -178,6 +180,7 @@ class KeyboardWindow(di: DI) :
         }
 
         keyboard.also {
+            it.restoreModifier(sharedModifier)
             runBlocking { _currentKeyboardHeight.emit(it.keyboardHeight) }
             if (it.isLock) lastLockKeyboardId = target
             dispatchCapsState(it::setShifted)
@@ -271,6 +274,7 @@ class KeyboardWindow(di: DI) :
             if (cachedKeyboards.containsKey(target)) {
                 if (target == currentKeyboardId) return@execute
             }
+            sharedModifier = activeKeyboard?.modifier ?: sharedModifier
             detachCurrentView()
             attachKeyboard(target)
         }
@@ -279,6 +283,7 @@ class KeyboardWindow(di: DI) :
 
     fun refreshKeyboards(isAll: Boolean = false) {
         val id = currentKeyboardId.ifEmpty { return }
+        sharedModifier = activeKeyboard?.modifier ?: sharedModifier
         detachCurrentView()
         if (isAll) {
             cachedKeyboards.clear()

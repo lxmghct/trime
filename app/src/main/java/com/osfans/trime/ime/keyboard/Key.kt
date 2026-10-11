@@ -164,6 +164,11 @@ class Key(
         return isOn
     }
 
+    /** Restores a modifier key's visual state without applying click-toggle semantics. */
+    internal fun restoreOn(on: Boolean) {
+        isOn = on
+    }
+
     private val keyOffsetX: Float
         get() = if (isPressed) keyPressOffsetX else 0f
     private val keyOffsetY: Float

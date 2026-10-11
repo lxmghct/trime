@@ -860,6 +860,7 @@ preset_keys:
   Keyboard_symbols: {label: 符号, send: Eisu_toggle, select: symbols}
   Keyboard_number: {label: 数字, send: Eisu_toggle, select: number}
   Keyboard_default: {label: 返回, send: Eisu_toggle, select: .default}
+  Keyboard_computer: {label: 电脑, send: Eisu_toggle, select: computer}
   Keyboard_edit: {label: 编辑, send: Eisu_toggle, select: edit}
   Keyboard_switch: {label: 键盘, send: Eisu_toggle, select: .next}
   liquid_keyboard_switch: { label: 更多, send: FUNCTION, command: liquid_keyboard, option: "更多" }
@@ -914,26 +915,26 @@ preset_keyboards:
     label_transform: uppercase #uppercase|none 中文模式下的字母标签自动大写
     lock: true
     keys:
-    - {click: '1', long_click: '!', swipe_up: '!'}
-    - {click: '2', long_click: '@', swipe_up: '@'}
-    - {click: '3', long_click: '#', swipe_up: '#'}
-    - {click: '4', long_click: '$', swipe_up: '$'}
-    - {click: '5', long_click: '%', swipe_up: '%'}
-    - {click: '6', long_click: '^', swipe_up: '^'}
-    - {click: '7', long_click: '&', swipe_up: '&', has_menu: Left}
-    - {click: '8', long_click: '*', swipe_up: '*', has_menu: Right}
-    - {click: '9', long_click: '(', swipe_up: '(', has_menu: Page_Up}
-    - {click: '0', long_click: ')', swipe_up: ')', has_menu: Page_Down}
-    - {click: 'q', long_click: '_', swipe_up: '_'}
+    - {click: '1', long_click: {commit: '!', label: '!'}, swipe_up: {commit: '!', label: '!'}}
+    - {click: '2', long_click: {commit: '@', label: '@'}, swipe_up: {commit: '@', label: '@'}}
+    - {click: '3', long_click: {commit: '#', label: '#'}, swipe_up: {commit: '#', label: '#'}}
+    - {click: '4', long_click: {commit: '$', label: '$'}, swipe_up: {commit: '$', label: '$'}}
+    - {click: '5', long_click: {commit: '%', label: '%'}, swipe_up: {commit: '%', label: '%'}}
+    - {click: '6', long_click: {commit: '^', label: '^'}, swipe_up: {commit: '^', label: '^'}}
+    - {click: '7', long_click: {commit: '&', label: '&'}, swipe_up: {commit: '&', label: '&'}, has_menu: Left}
+    - {click: '8', long_click: {commit: '*', label: '*'}, swipe_up: {commit: '*', label: '*'}, has_menu: Right}
+    - {click: '9', long_click: {commit: '(', label: '('}, swipe_up: {commit: '(', label: '('}, has_menu: Page_Up}
+    - {click: '0', long_click: {commit: ')', label: ')'}, swipe_up: {commit: ')', label: ')'}, has_menu: Page_Down}
+    - {click: 'q', long_click: {commit: '_', label: '_'}, swipe_up: {commit: '_', label: '_'}}
     - {click: 'w', long_click: {commit: '-', label: '-'}, swipe_up: {commit: '-', label: '-'}}
-    - {click: 'e', long_click: '+', swipe_up: '+'}
-    - {click: 'r', long_click: '=', swipe_up: '='}
-    - {click: 't', long_click: '|', swipe_up: '|'}
-    - {click: 'y', long_click: '\', swipe_up: '\'}
-    - {click: 'u', long_click: '[', swipe_up: '['}
-    - {click: 'i', long_click: ']', swipe_up: ']'}
-    - {click: 'o', long_click: '{', swipe_up: '{'}
-    - {click: 'p', long_click: '}', swipe_up: '}'}
+    - {click: 'e', long_click: {commit: '+', label: '+'}, swipe_up: {commit: '+', label: '+'}}
+    - {click: 'r', long_click: {commit: '=', label: '='}, swipe_up: {commit: '=', label: '='}}
+    - {click: 't', long_click: {commit: '|', label: '|'}, swipe_up: {commit: '|', label: '|'}}
+    - {click: 'y', long_click: {commit: '\', label: '\'}, swipe_up: {commit: '\', label: '\'}}
+    - {click: 'u', long_click: {commit: '[', label: '['}, swipe_up: {commit: '[', label: '['}}
+    - {click: 'i', long_click: {commit: ']', label: ']'}, swipe_up: {commit: ']', label: ']'}}
+    - {click: 'o', long_click: {commit: '{', label: '{'}, swipe_up: {commit: '{', label: '{'}}
+    - {click: 'p', long_click: {commit: '}', label: '}'}, swipe_up: {commit: '}', label: '}'}}
     - {width: 5}
     - {click: 'a', long_click: select_all, swipe_up: select_all }
     - {click: 's', long_click: Home, swipe_up: Home}
@@ -942,26 +943,90 @@ preset_keyboards:
     - {click: 'g', long_click: Page_Down, swipe_up: Page_Down}
     - {click: 'h', long_click: Up, swipe_up: Up}
     - {click: 'j', long_click: Down, swipe_up: Down}
-    - {click: 'k', long_click: ':', swipe_up: ':'}
-    - {click: 'l', long_click: ';', swipe_up: ';'}
+    - {click: 'k', long_click: {commit: ':', label: ':'}, swipe_up: {commit: ':', label: ':'}}
+    - {click: 'l', long_click: {commit: ';', label: ';'}, swipe_up: {commit: ';', label: ';'}}
     - {width: 5}
     - {click: Shift_L, has_menu: split_word, width: 15}
-    - {click: 'z', long_click: '`', swipe_up: '`'}
+    - {click: 'z', long_click: {commit: '`', label: '`'}, swipe_up: {commit: '`', label: '`'}}
     - {click: 'x', long_click: cut, swipe_up: cut}
     - {click: 'c', long_click: copy, swipe_up: copy}
     - {click: 'v', long_click: paste, swipe_up: paste}
-    - {click: 'b', long_click: '~', swipe_up: '~'}
-    - {click: 'n', long_click: '"', swipe_up: '"'}
-    - {click: 'm', long_click: "'", swipe_up: "'"}
+    - {click: 'b', long_click: {commit: '~', label: '~'}, swipe_up: {commit: '~', label: '~'}}
+    - {click: 'n', long_click: {commit: '"', label: '"'}, swipe_up: {commit: '"', label: '"'}}
+    - {click: 'm', long_click: {commit: "'", label: "'"}, swipe_up: {commit: "'", label: "'"}}
     - {click: BackSpace, width: 15}
     - {click: Mode_switch, long_click: Menu, width: 15}
-    - {click: Control_L, long_click: Alt_L, swipe_up: Alt_L, width: 10}
+    - {click: Control_L, long_click: Keyboard_computer, swipe_up: Keyboard_computer, width: 10}
     - {click: Keyboard_symbols, long_click: Keyboard_number}
-    - {click: ',', long_click: '<', swipe_up: '<'}
+    - {click: ',', long_click: {commit: '<', label: '<'}, swipe_up: {commit: '<', label: '<'}}
     - {click: space, width: 20, swipe_left: Left, swipe_right: Right, long_click: space_tab, swipe_up: Tab}
-    - {click: '.', long_click: '>', swipe_up: '>'}
-    - {click: '/', long_click: '?', swipe_up: '?'}
+    - {click: '.', long_click: {commit: '>', label: '>'}, swipe_up: {commit: '>', label: '>'}}
+    - {click: '/', long_click: {commit: '?', label: '?'}, swipe_up: {commit: '?', label: '?'}}
     - {click: Return, composing: Return1, long_click: Keyboard_edit, swipe_up: Keyboard_edit, width: 15}
+  computer:
+    name: 电脑
+    author: "lxm"
+    ascii_mode: 1
+    width: 10
+    height: 44
+    columns: 10
+    lock: true
+    keys:
+    - {click: Escape, label: Esc}
+    - {click: Tab}
+    - {click: Caps_Lock, label: Caps}
+    - {click: Insert, label: Ins}
+    - {click: Delete, label: Del}
+    - {click: Home}
+    - {click: End}
+    - {click: Page_Up, label: PgUp}
+    - {click: Page_Down, label: PgDn}
+    - {click: BackSpace, label: Backspace}
+    - {click: F1, label: F1}
+    - {click: F2, label: F2}
+    - {click: F3, label: F3}
+    - {click: F4, label: F4}
+    - {click: F5, label: F5}
+    - {click: F6, label: F6}
+    - {click: F7, label: F7}
+    - {click: F8, label: F8}
+    - {click: F9, label: F9}
+    - {click: F10, label: F10}
+    - {click: F11, label: F11}
+    - {click: F12, label: F12}
+    - {click: Control_L, label: Ctrl}
+    - {click: Alt_L, label: Alt}
+    - {click: Meta_L, label: Meta}
+    - {click: Shift_L, label: Shift}
+    - {click: Left}
+    - {click: Down}
+    - {click: Up}
+    - {click: Right}
+    - {click: '!'}
+    - {click: '@'}
+    - {click: '#'}
+    - {click: '$'}
+    - {click: '%'}
+    - {click: '^'}
+    - {click: '&'}
+    - {click: '*'}
+    - {click: '('}
+    - {click: ')'}
+    - {click: '-'}
+    - {click: '_'}
+    - {click: '='}
+    - {click: '+'}
+    - {click: '['}
+    - {click: ']'}
+    - {click: '{'}
+    - {click: '}'}
+    - {click: '\\'}
+    - {click: '|'}
+    - {width: 40}
+    - {click: space, width: 20}
+    - {click: Return, width: 15}
+    - {click: BackSpace, width: 15}
+    - {click: Keyboard_default, label: 返回, width: 10}
   number:
     name: 预设数字
     author: "osfans <waxaca@163.com>"

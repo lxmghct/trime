@@ -378,6 +378,16 @@ class Keyboard(
         return setModifier(KeyEvent.META_SHIFT_ON, shifted)
     }
 
+    /** Restores modifier state shared by [KeyboardWindow] when changing layouts. */
+    fun restoreModifier(value: Int) {
+        modifier = value
+        mShiftKey?.restoreOn(value.hasFlag(KeyEvent.META_SHIFT_ON))
+        mAltKey?.restoreOn(value.hasFlag(KeyEvent.META_ALT_ON))
+        mCtrlKey?.restoreOn(value.hasFlag(KeyEvent.META_CTRL_ON))
+        mMetaKey?.restoreOn(value.hasFlag(KeyEvent.META_META_ON))
+        mSymKey?.restoreOn(value.hasFlag(KeyEvent.KEYCODE_SYM))
+    }
+
     /**
      * 设置修饰键的状态
      *

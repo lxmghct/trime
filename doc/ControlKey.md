@@ -80,3 +80,16 @@ tmux 是否切换窗口，最终还取决于终端或 SSH 客户端是否把 And
 - W 键的 `-` 长按/上划动作改为直接提交文本，避免 Shift 状态下被 Android 按键映射成 `_`；真机在 Shift 锁定状态下验证结果为 `-`。
 - 源码已支持 Alt：`KeyCode` 包含 `Alt_L/Alt_R`，`KeyModifier` 能生成 `META_ALT_ON`，输入法服务也会发送 Alt 按键事件。因此无需改动 APK 源码，只需在主题中增加 `Alt_L` 预设。
 - Alt 已放到 Ctrl 键的长按和上划动作上：长按/上划 Ctrl 后按 A，真机日志分别确认了 `process key: Alt+a` 和 `KeyModifiers(modifiers=8)`。
+
+## 符号直提交与“电脑”键盘（2026-10-12）
+
+- Shift 状态下的符号问题并非只有 W 键：数字行的 `! @ # $ % ^ & * ( )`，以及 `_ - + = | \\ [ ] { } : ;`、反引号、`~ " ' < > ?` 等长按/上划符号，统一改为 `commit` 动作并保留原标签。这样动作提交的是目标字符，不会再次按当前 Shift 状态解释；真机验证 R 长按可得到 `=`，不再变成 `+`。
+- 新增 `preset_keyboards.computer`，名称为“电脑”。布局包含 Esc、Tab、Caps、Ins/Del、Home/End、PgUp/PgDn、F1–F12、Ctrl/Alt/Meta/Shift、方向键、常用 ASCII 符号、空格、回车和退格；右下角“返回”回到 `.default`。
+- 默认键盘 Ctrl 的长按和上划现在进入 `电脑`，不再直接触发 Alt。电脑键盘中提供真实的 `Alt_L` 点击键，因而 Alt 可以独立锁定并参与后续组合键。
+- 键盘切换前后修饰键状态由 `KeyboardWindow` 共享并恢复到目标键盘；新增 `Keyboard.restoreModifier()` 和 `Key.restoreOn()`，避免缓存键盘各自持有状态导致 Alt/Ctrl 丢失。真机实测“电脑”中点击 Alt → 右下角返回 → 点击 A，日志收到 `process key: Alt+a`，`modifiers=8`。
+
+## 最新构建与真机记录（2026-10-12）
+
+- 使用 `BUILD_ABI=arm64-v8a`、NDK `28.0.13004108` 构建 debug APK；`./gradlew :app:compileDebugKotlin` 和 arm64 debug APK 构建通过。全 ABI 构建仍受到工程既有 Lua `fseeko/ftello` 与 Android NDK 的兼容错误影响，未把第三方临时修补带入提交。
+- 真机配置修改前备份为 `/storage/emulated/0/rime/默认配置调整.trime.yaml.codex-before-computer-20261012-1`；标签微调前又保存了 `/storage/emulated/0/rime/默认配置调整.trime.yaml.codex-before-labels-20261012-1`。
+- 最终配置已同步到公共目录和应用专属目录，最终 MD5 为 `36d24369582675452db2e02e541f97bb`；同步副本一致。最终副本为本文件对应的 [`dev-config.yaml`](dev-config.yaml)。
