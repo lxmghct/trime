@@ -48,7 +48,7 @@ preset_keyboards:
 - 新版本首次运行需要选择“内部存储/rime”目录。选择后应用使用 `EXTERNAL_SYNC`，并导入了原有 Rime 配置。
 - 修改前已备份：`/storage/emulated/0/rime/默认配置调整.trime.yaml.codex-backup-20260923-1`。
 - 备份文件与原配置的 MD5 均为 `4bfd00444dc6b00ecc9c37b808612d00`。
-- 已在 `/storage/emulated/0/rime/默认配置调整.trime.yaml` 中加入 `Control_L` 预设和新版中英文切换配置；当前修改版 MD5 为 `2a666a51ba6ab240f29f2cecfd70b3bb`，应用专属同步目录中的副本 MD5 相同。
+- 已在 `/storage/emulated/0/rime/默认配置调整.trime.yaml` 中加入 `Control_L` 预设和新版中英文切换配置；修饰键调整前版本 MD5 为 `2a666a51ba6ab240f29f2cecfd70b3bb`，应用专属同步目录中的副本 MD5 相同。
 - 中英文切换修复前的配置另备份为 `/storage/emulated/0/rime/默认配置调整.trime.yaml.codex-before-switch-fix-20260923-1`，MD5 为 `7538a1458d98a4aa8aa73df72e3d879c`。
 - 真机部署并重新选择“默认配置调整”主题后，键盘正常显示 `Ctrl`，点击后会高亮锁定；点击 `B` 后可继续操作，之后再次点击 `Ctrl` 可解除锁定。
 - 自定义主题第一次修改时曾因 YAML 底行缩进多一个空格而被应用拒绝；已修正并重新部署，未触及备份文件。
@@ -68,6 +68,15 @@ tmux 是否切换窗口，最终还取决于终端或 SSH 客户端是否把 And
 - 模式键状态文字已由“中文/西文”改为“中文/英文”；并将相关状态键的旧 `send: Mode_switch` 统一改为新版 `send: SWITCH_CHARSET`。
 - 清理了新版运行时不再使用或会被忽略的旧配置项，包括旧 `layout`/`window` 样式字段、预览/本地化兼容字段、`android_keys` 参考块等；以 `comment_position: TOP` 保留注释位置设置。
 - 同步更新新版预设命令：`SEARCH`、`FUNCTION`、`HELP`、`MENU`，并将应用入口改为 `com.osfans.trime.debug`；`Deploy` 和 `Sync` 改用新版 `FUNCTION` 调用方式。
-- 最终配置已推送到手机公共目录和应用专属目录，两处 MD5 均为 `2a666a51ba6ab240f29f2cecfd70b3bb`。重启输入法后，真机键盘显示 `Ctrl`，模式键可在“中文”和“英文”之间切换。
+- 修饰键调整前的最终配置已推送到手机公共目录和应用专属目录，两处 MD5 均为 `2a666a51ba6ab240f29f2cecfd70b3bb`。重启输入法后，真机键盘显示 `Ctrl`，模式键可在“中文”和“英文”之间切换。
 - 原始配置与最终配置已分别保存为 [`默认配置调整.v3.3.0.yaml`](默认配置调整.v3.3.0.yaml) 和 [`默认配置调整.v3.3.13.yaml`](默认配置调整.v3.3.13.yaml)。
 - GitHub fork：`https://github.com/lxmghct/trime.git`，目标分支为 `develop`；本次收尾文档提交后推送。
+
+## dev-config.yaml 修饰键调整（2026-10-12）
+
+- 已在修改前备份手机配置：`/storage/emulated/0/rime/默认配置调整.trime.yaml.codex-before-modifier-20261012-1`，备份 MD5 为 `2a666a51ba6ab240f29f2cecfd70b3bb`。
+- 方案名称已改为 `dev-config.yaml`；最终配置已保存为 [`dev-config.yaml`](dev-config.yaml)，最终 MD5 为 `de9dbe4cf4b382f3b0a9618741bfb91f`。
+- `Shift_L` 已由 `shift_lock: ascii_long` 改为 `shift_lock: long`：长按进入 CapsLock 式 Shift 锁定，再次长按关闭。真机已验证锁定状态、高亮显示和再次长按解除。
+- W 键的 `-` 长按/上划动作改为直接提交文本，避免 Shift 状态下被 Android 按键映射成 `_`；真机在 Shift 锁定状态下验证结果为 `-`。
+- 源码已支持 Alt：`KeyCode` 包含 `Alt_L/Alt_R`，`KeyModifier` 能生成 `META_ALT_ON`，输入法服务也会发送 Alt 按键事件。因此无需改动 APK 源码，只需在主题中增加 `Alt_L` 预设。
+- Alt 已放到 Ctrl 键的长按和上划动作上：长按/上划 Ctrl 后按 A，真机日志分别确认了 `process key: Alt+a` 和 `KeyModifiers(modifiers=8)`。
