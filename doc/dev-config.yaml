@@ -845,6 +845,9 @@ preset_keys:
   undo: {label: 撤销, send: Control+z} #>=Android 6.0
   # rime组合键
   F4: {label: 方案选单, send: F4}
+  Computer_F4: {label: F4, send: F4}
+  Computer_CapsLock: {label: Caps, send: Caps_Lock}
+  Computer_Meta: {label: Win, send: Meta_L}
   BackToPreviousSyllable: {label: 删音节, send: Control+BackSpace}
   CommitRawInput: {label: 编码, send: Control+Return}
   CommitScriptText: {label: 编码, send: Shift+Return}
@@ -974,18 +977,17 @@ preset_keyboards:
     keys:
     - {click: Escape, label: Esc}
     - {click: Tab}
-    - {click: Caps_Lock, label: Caps}
+    - {click: Computer_CapsLock, width: 15}
     - {click: Insert, label: Ins}
     - {click: Delete, label: Del}
     - {click: Home}
     - {click: End}
     - {click: Page_Up, label: PgUp}
     - {click: Page_Down, label: PgDn}
-    - {click: BackSpace, label: Backspace}
     - {click: F1, label: F1}
     - {click: F2, label: F2}
     - {click: F3, label: F3}
-    - {click: F4, label: F4}
+    - {click: Computer_F4}
     - {click: F5, label: F5}
     - {click: F6, label: F6}
     - {click: F7, label: F7}
@@ -996,32 +998,12 @@ preset_keyboards:
     - {click: F12, label: F12}
     - {click: Control_L, label: Ctrl}
     - {click: Alt_L, label: Alt}
-    - {click: Meta_L, label: Meta}
+    - {click: Computer_Meta}
     - {click: Shift_L, label: Shift}
     - {click: Left}
     - {click: Down}
     - {click: Up}
     - {click: Right}
-    - {click: '!'}
-    - {click: '@'}
-    - {click: '#'}
-    - {click: '$'}
-    - {click: '%'}
-    - {click: '^'}
-    - {click: '&'}
-    - {click: '*'}
-    - {click: '('}
-    - {click: ')'}
-    - {click: '-'}
-    - {click: '_'}
-    - {click: '='}
-    - {click: '+'}
-    - {click: '['}
-    - {click: ']'}
-    - {click: '{'}
-    - {click: '}'}
-    - {click: '\\'}
-    - {click: '|'}
     - {width: 40}
     - {click: space, width: 20}
     - {click: Return, width: 15}

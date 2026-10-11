@@ -93,3 +93,12 @@ tmux 是否切换窗口，最终还取决于终端或 SSH 客户端是否把 And
 - 使用 `BUILD_ABI=arm64-v8a`、NDK `28.0.13004108` 构建 debug APK；`./gradlew :app:compileDebugKotlin` 和 arm64 debug APK 构建通过。全 ABI 构建仍受到工程既有 Lua `fseeko/ftello` 与 Android NDK 的兼容错误影响，未把第三方临时修补带入提交。
 - 真机配置修改前备份为 `/storage/emulated/0/rime/默认配置调整.trime.yaml.codex-before-computer-20261012-1`；标签微调前又保存了 `/storage/emulated/0/rime/默认配置调整.trime.yaml.codex-before-labels-20261012-1`。
 - 最终配置已同步到公共目录和应用专属目录，最终 MD5 为 `36d24369582675452db2e02e541f97bb`；同步副本一致。最终副本为本文件对应的 [`dev-config.yaml`](dev-config.yaml)。
+
+## “电脑”键盘布局调整（2026-10-12）
+
+- 移除了第一行末尾重复的退格键，并将第三个键改为带明确标签的 `Caps` 预设，避免 `Caps_Lock` 被截断；`Caps_Lock` 与 `Shift_L` 是不同的 Android 按键，因此两者同时保留。
+- 将 F4 改为独立的 `Computer_F4` 预设，避免全局 F4 的“方案选单”标签覆盖；第三行的 Meta 键改为 `Win`。Meta 是 Trime 当前可用的 Windows/Command 类修饰键表示，未另造一个无独立 Android 语义的“MacOS”键。
+- Tab、Home、End、Insert、Delete、PgUp、PgDn、方向键和 F1–F12 均保留；删除了电脑键盘中的符号行，符号继续使用“符号”键盘。
+- 曾在真机上试验 `PrtSc`/`SysRq`。按键标签可以显示，但运行日志为 `processKeyAction: label=PrtSc, code=0`，说明当前 Trime/Android 映射不支持该键，因此已移除，不保留无效入口。
+- 重新排布底部按键后，“返回”位于电脑键盘右下角；当前最终布局已在 OPPO PJX110（Android 15）上显示正常，Caps、F4、Win、Ctrl、Alt、Shift 和底部返回均可见。
+- 最终配置同步到公共目录和应用专属目录，两处 MD5 均为 `149b2f6c6691d2f4294b6cb4529285e6`。本轮修改前的手机备份为 `/storage/emulated/0/rime/默认配置调整.trime.yaml.codex-before-computer-layout-final-20261012-1`，应用专属目录也保留同名备份。
